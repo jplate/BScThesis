@@ -1,0 +1,13 @@
+
+(defun rev-append (list1 list2) 
+	(cond ((endp list1) list2)
+		 (T (rev-append (cdr list1) (cons (car list1) list2)))))
+
+(defmacro find-remove-1st (item list &rest keys)
+	`(find-remove-1st_ ,item ,list () ,@keys))
+	
+(defun find-remove-1st_ (item list part1 &key (key #'identity) (test #'eql))
+	(cond ((endp list) (rev-append part1 ()))
+		 ((funcall test (funcall key (car list)) item)
+		  (rev-append part1 (cdr list)))
+		 (T (find-remove-1st_ item (cdr list) (cons (car list) part1) :key key :test test))))

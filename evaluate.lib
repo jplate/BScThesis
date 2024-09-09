@@ -1,0 +1,286 @@
+#0Y_ #0Y |CHARSET|::|UTF-8|
+(|SYSTEM|::|REMOVE-OLD-DEFINITIONS| '|EXT|::|WITH-GENSYMS|)
+(|SYSTEM|::|%PUTD| '|EXT|::|WITH-GENSYMS|
+ (|SYSTEM|::|MAKE-MACRO|
+  (|COMMON-LISP|::|FUNCTION| |EXT|::|WITH-GENSYMS|
+   (|COMMON-LISP|::|LAMBDA| (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
+    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|CONS| |SYSTEM|::|<MACRO-FORM>|))
+    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|IGNORE| |SYSTEM|::|<ENV-ARG>|))
+    "Makro\n
+  with-gensyms intern var-list &body body\n\n
+  Dient zum Abkürzen von let-Köpfen, in denen nur gensyms erzeugt und den\n
+  Elementen von var-list zugewiesen werden. Ist intern nicht nil, werden die\n
+  gensyms interniert."
+    (|COMMON-LISP|::|IF|
+     (|COMMON-LISP|::|NOT|
+      (|SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|<MACRO-FORM>| 3. 3.
+       |COMMON-LISP|::|T|))
+     (|SYSTEM|::|MACRO-CALL-ERROR| |SYSTEM|::|<MACRO-FORM>|)
+     (|COMMON-LISP|::|LET*|
+      ((|COMMON-LISP|::|INTERN|
+        (|COMMON-LISP|::|CADR| . #1=(|SYSTEM|::|<MACRO-FORM>|)))
+       (|COMMON-LISP-USER|::|VARS| (|COMMON-LISP|::|CADDR| . #1#))
+       (|COMMON-LISP-USER|::|BODY| (|COMMON-LISP|::|CDDDR| . #1#)))
+      (|COMMON-LISP|::|BLOCK| |EXT|::|WITH-GENSYMS|
+       `(|COMMON-LISP|::|LET|
+         ,(|COMMON-LISP|::|MAPCAR|
+           #'(|COMMON-LISP|::|LAMBDA| (|COMMON-LISP-USER|::|S|)
+              `(,|COMMON-LISP-USER|::|S|
+                (|COMMON-LISP|::|IF| ,|COMMON-LISP|::|INTERN|
+                 (|COMMON-LISP|::|INTERN|
+                  (|COMMON-LISP|::|SYMBOL-NAME|
+                   (|COMMON-LISP|::|GENSYM|
+                    ,(|COMMON-LISP|::|SYMBOL-NAME| |COMMON-LISP-USER|::|S|))))
+                 (|COMMON-LISP|::|GENSYM|
+                  ,(|COMMON-LISP|::|SYMBOL-NAME| |COMMON-LISP-USER|::|S|)))))
+           |COMMON-LISP-USER|::|VARS|)
+         ,@|COMMON-LISP-USER|::|BODY|))))))
+  '(|COMMON-LISP|::|INTERN| |COMMON-LISP-USER|::|VARS| |COMMON-LISP|::|&BODY|
+    |COMMON-LISP-USER|::|BODY|)))
+(|SYSTEM|::|C-DEFUN| '|COMMON-LISP-USER|::|RESET-PACKAGE|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
+  '(|COMMON-LISP|::|&OPTIONAL|
+    (|COMMON-LISP|::|PACKAGE| |COMMON-LISP|::|*PACKAGE*|))))
+(|SYSTEM|::|REMOVE-OLD-DEFINITIONS| '|COMMON-LISP-USER|::|EVALUATE|)
+(|SYSTEM|::|%PUTD| '|COMMON-LISP-USER|::|EVALUATE|
+ (|SYSTEM|::|MAKE-MACRO|
+  (|COMMON-LISP|::|FUNCTION| |COMMON-LISP-USER|::|EVALUATE|
+   (|COMMON-LISP|::|LAMBDA| (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
+    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|CONS| |SYSTEM|::|<MACRO-FORM>|))
+    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|IGNORE| |SYSTEM|::|<ENV-ARG>|))
+    "Makro\n
+  evaluate userfile-name exmfile-name tracefile-name\n
+     opsfile-name function equivalent parm-lists exm-pops pops &optional (repeat 0)\n\n
+  Vergleicht Performanz und Rückgabewerte zweier gleichnamiger Funktionen, die\n
+  in einem 'Schülerprogramm' (userfile-name) bzw. einer 'Musterlösungsdatei'\n
+  (exmfile-name) definiert sind. Das Funktionssymbol ist function, das Symbol\n
+  der Äquivalenzfunktion equivalent. Diese Funktion kann auch erst in der\n
+  Musterlösungsdatei definiert sein, sollte in dem Fall aber auf keine anderen\n
+  in dieser Datei definierten Funktionen oder globalen Variablen zugreifen,\n
+  sofern diese nicht einem Package angehören, das nach dem Laden der\n
+  Musterlösung nicht mehr aktuell ist. Der Grund dafür ist, daß vor dem Laden\n
+  des Schülerprogramms, um unerwünschte Wiederverwendung von Musterlösungsfunk-\n
+  tionen zu verhindern, alle zuvor benutzten Symbole aus dem dann aktuellen\n
+  Package entfernt werden. Dies hat auch Konsequenzen auf die Auswahl von\n
+  Äquivalenzfunktionen, falls Aufgaben verlangen, in den Resultatwerten\n
+  internale Symbole zurückzugeben, die nicht schon in den Parameterlisten ent-\n
+  halten sind. Symbole gleichen Namens, von denen das eine nicht mehr im\n
+  Package vorhanden ist, sind nämlich nicht einmal equalp.\n
+  Angewendet wird function auf die Parameterlisten, zu denen sich die Elemente\n
+  von parm-lists auswerten, nachdem die Musterlösungsdatei geladen worden ist.\n
+  Es ist also möglich, die Parameter bei jedem Aufruf von evaluate automatisch\n
+  neu zu erzeugen, etwa um eine zufällige Variation zu erhalten. Für diesen Fall\n
+  gibt das letzte Argument, repeat, an, wie oft der Test der Funktion auf allen\n
+  Parameterlisten wiederholt werden soll (bei jeder Wiederholung werden die\n
+  Parameterlisten neu erzeugt).\n
+  Alle auftretenden Fehler werden in errorfile gespeichert. In Tracefile\n
+  werden die von der eingebauten time-Funktion in bezug auf die beiden\n
+  Versionen von function erzeugten Performanzangaben gespeichert sowie\n
+  Funktionsaufrufe, auf denen die beiden Versionen nach Maßgabe von equivalent\n
+  unterschiedliche Rückgabewerte liefern."
+    (|COMMON-LISP|::|IF|
+     (|COMMON-LISP|::|NOT|
+      (|SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|<MACRO-FORM>| 10. 11.
+       |COMMON-LISP|::|NIL|))
+     (|SYSTEM|::|MACRO-CALL-ERROR| |SYSTEM|::|<MACRO-FORM>|)
+     (|COMMON-LISP|::|LET*|
+      ((|COMMON-LISP-USER|::|USERFILE-NAME|
+        (|COMMON-LISP|::|CADR| . #1=(|SYSTEM|::|<MACRO-FORM>|)))
+       (|COMMON-LISP-USER|::|EXMFILE-NAME| (|COMMON-LISP|::|CADDR| . #1#))
+       (|COMMON-LISP-USER|::|TRACEFILE-NAME| (|COMMON-LISP|::|CADDDR| . #1#))
+       (|COMMON-LISP-USER|::|OPSFILE-NAME| (|COMMON-LISP|::|FIFTH| . #1#))
+       #'(|COMMON-LISP|::|CADR| . #2=((|COMMON-LISP|::|CDDDDR| . #1#)))
+       (|COMMON-LISP-USER|::|EQUIVALENT| (|COMMON-LISP|::|CADDR| . #2#))
+       (|COMMON-LISP-USER|::|PARM-LISTS| (|COMMON-LISP|::|CADDDR| . #2#))
+       (|COMMON-LISP-USER|::|EXM-POPS| (|COMMON-LISP|::|FIFTH| . #2#))
+       (|COMMON-LISP-USER|::|POPS|
+        (|COMMON-LISP|::|CADR| . #3=((|COMMON-LISP|::|CDDDDR| . #2#))))
+       (|COMMON-LISP-USER|::|REPEAT|
+        (|COMMON-LISP|::|IF| (|COMMON-LISP|::|CDDR| . #3#)
+         (|COMMON-LISP|::|CADDR| . #3#) 0.)))
+      (|COMMON-LISP|::|BLOCK| |COMMON-LISP-USER|::|EVALUATE|
+       (|EXT|::|WITH-GENSYMS| |COMMON-LISP|::|NIL|
+        (|COMMON-LISP-USER|::|TRACEFILE| |COMMON-LISP-USER|::|OPSFILE|
+         |COMMON-LISP-USER|::|EQUIV| |COMMON-LISP-USER|::|PARMLISTS|
+         |COMMON-LISP-USER|::|VALUES-LIST1| |COMMON-LISP-USER|::|VALUES-LIST2|
+         |COMMON-LISP-USER|::|EQUIV-NAME|
+         |COMMON-LISP-USER|::|COUNTER-EXAMPLE-COUNT|
+         |COMMON-LISP-USER|::|EXM-POP-NAMES| |COMMON-LISP-USER|::|POP-NAMES|)
+        (|COMMON-LISP|::|FLET|
+         ((|COMMON-LISP-USER|::|LOAD-FILE|
+           (|COMMON-LISP-USER|::|FILENAME| |COMMON-LISP|::|TYPE|)
+           `(|COMMON-LISP|::|HANDLER-CASE|
+             (|COMMON-LISP|::|LOAD| ,|COMMON-LISP-USER|::|FILENAME| :|VERBOSE|
+              |COMMON-LISP|::|NIL|)
+             (|COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+              (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|ERROR-INFO|
+               "loading~A" ,|COMMON-LISP|::|TYPE|)
+              (|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|))))
+          (|COMMON-LISP-USER|::|DIRECT-TRACE-OUTPUT| |COMMON-LISP|::|NIL|
+           `(|COMMON-LISP|::|SETF| |COMMON-LISP|::|*TRACE-OUTPUT*|
+             (|COMMON-LISP|::|IF|
+              (|COMMON-LISP|::|AND| ,|COMMON-LISP-USER|::|TRACEFILE|
+               (|COMMON-LISP|::|OPEN-STREAM-P|
+                ,|COMMON-LISP-USER|::|TRACEFILE|))
+              ,|COMMON-LISP-USER|::|TRACEFILE|
+              (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|TRACEFILE|
+               (|COMMON-LISP|::|OPEN| ,|COMMON-LISP-USER|::|TRACEFILE-NAME|
+                :|DIRECTION| :|OUTPUT| :|IF-DOES-NOT-EXIST| :|CREATE|)))))
+          (|COMMON-LISP-USER|::|EXPR| (|COMMON-LISP|::|TYPE|)
+           `(|COMMON-LISP|::|MAPCAR|
+             #'(|COMMON-LISP|::|LAMBDA| (|COMMON-LISP-USER|::|PARMS|)
+                (|COMMON-LISP|::|HANDLER-CASE|
+                 (|COMMON-LISP|::|LET|
+                  ((|COMMON-LISP-USER|::|FUN|
+                    (|COMMON-LISP|::|FIND-SYMBOL|
+                     ,(|COMMON-LISP|::|SYMBOL-NAME|
+                       |COMMON-LISP|::|FUNCTION|))))
+                  (|COMMON-LISP|::|COND|
+                   ((|COMMON-LISP|::|NULL| |COMMON-LISP-USER|::|FUN|)
+                    (|COMMON-LISP|::|ERROR| "Function ~A is undefined."
+                     ,(|COMMON-LISP|::|SYMBOL-NAME|
+                       |COMMON-LISP|::|FUNCTION|)))
+                   (|COMMON-LISP|::|T|
+                    (|COMMON-LISP|::|MULTIPLE-VALUE-LIST|
+                     (|COMMON-LISP|::|EVAL|
+                      (|COMMON-LISP|::|CONS| |COMMON-LISP-USER|::|FUN|
+                       |COMMON-LISP-USER|::|PARMS|))))))
+                 (|COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+                  (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*PRINT-CIRCLE*|
+                   |COMMON-LISP|::|T|)
+                  (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|ERROR-INFO|
+                   "calling ~A~&~S" ,|COMMON-LISP|::|TYPE|
+                   |COMMON-LISP-USER|::|PARMS|)
+                  (|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|))))
+             ,|COMMON-LISP-USER|::|PARMLISTS|))
+          (|COMMON-LISP-USER|::|STORE-OPS| (|COMMON-LISP-USER|::|POP-NAMES|)
+           `(|COMMON-LISP|::|DO-SYMBOLS|
+             (|COMMON-LISP-USER|::|VAR| |COMMON-LISP|::|*PACKAGE*|
+              (|COMMON-LISP|::|TERPRI| ,|COMMON-LISP-USER|::|OPSFILE|))
+             (|COMMON-LISP|::|WHEN|
+              (|COMMON-LISP|::|AND|
+               (|COMMON-LISP|::|FBOUNDP| |COMMON-LISP-USER|::|VAR|)
+               (|COMMON-LISP|::|FIND|
+                (|COMMON-LISP|::|SYMBOL-NAME| |COMMON-LISP-USER|::|VAR|)
+                ,|COMMON-LISP-USER|::|POP-NAMES|))
+              (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|OPSFILE| "~S "
+               |COMMON-LISP-USER|::|VAR|)))))
+         `(|COMMON-LISP|::|LET|
+           (,|COMMON-LISP-USER|::|TRACEFILE| ,|COMMON-LISP-USER|::|OPSFILE|)
+           (|COMMON-LISP|::|UNWIND-PROTECT|
+            (|COMMON-LISP|::|LET|
+             (,|COMMON-LISP-USER|::|EQUIV| ,|COMMON-LISP-USER|::|PARMLISTS|
+              ,|COMMON-LISP-USER|::|VALUES-LIST1|
+              ,|COMMON-LISP-USER|::|VALUES-LIST2|
+              (,|COMMON-LISP-USER|::|COUNTER-EXAMPLE-COUNT| 0.)
+              (,|COMMON-LISP-USER|::|EQUIV-NAME|
+               ,(|COMMON-LISP|::|SYMBOL-NAME|
+                 |COMMON-LISP-USER|::|EQUIVALENT|))
+              (,|COMMON-LISP-USER|::|EXM-POP-NAMES|
+               ',(|COMMON-LISP|::|MAPCAR| #'|COMMON-LISP|::|SYMBOL-NAME|
+                  |COMMON-LISP-USER|::|EXM-POPS|))
+              (,|COMMON-LISP-USER|::|POP-NAMES|
+               ',(|COMMON-LISP|::|MAPCAR| #'|COMMON-LISP|::|SYMBOL-NAME|
+                  |COMMON-LISP-USER|::|POPS|)))
+             (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|OPSFILE|
+              (|COMMON-LISP|::|OPEN| ,|COMMON-LISP-USER|::|OPSFILE-NAME|
+               :|DIRECTION| :|OUTPUT| :|IF-DOES-NOT-EXIST| :|CREATE|))
+             (|COMMON-LISP|::|FUNCALL|
+              ',(|COMMON-LISP|::|SYMBOL-FUNCTION|
+                 '|COMMON-LISP-USER|::|RESET-PACKAGE|))
+             ,(|COMMON-LISP-USER|::|LOAD-FILE|
+               |COMMON-LISP-USER|::|EXMFILE-NAME| "exemplary")
+             (|COMMON-LISP|::|HANDLER-CASE|
+              (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|PARMLISTS|
+               (|COMMON-LISP|::|LIST|
+                ,.(|COMMON-LISP|::|DO|
+                   ((|COMMON-LISP-USER|::|RESULT|
+                     |COMMON-LISP-USER|::|PARM-LISTS|
+                     (|COMMON-LISP|::|APPEND| |COMMON-LISP-USER|::|PARM-LISTS|
+                      |COMMON-LISP-USER|::|RESULT|))
+                    (|COMMON-LISP-USER|::|N| |COMMON-LISP-USER|::|REPEAT|
+                     (|COMMON-LISP|::|DECF| |COMMON-LISP-USER|::|N|)))
+                   ((|COMMON-LISP|::|<=| |COMMON-LISP-USER|::|N| 0.)
+                    |COMMON-LISP-USER|::|RESULT|))))
+              (|COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+               (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|ERROR-INFO|
+                "creating parameter lists")
+               (|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|)))
+             (|COMMON-LISP|::|HANDLER-CASE|
+              (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|EQUIV|
+               (|COMMON-LISP|::|SYMBOL-FUNCTION|
+                (|COMMON-LISP|::|FIND-SYMBOL|
+                 ,|COMMON-LISP-USER|::|EQUIV-NAME|)))
+              (|COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+               (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|ERROR-INFO|
+                "accessing equivalence function")
+               (|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|)))
+             ,(|COMMON-LISP-USER|::|DIRECT-TRACE-OUTPUT|) (|EXT|::|GC|)
+             (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|VALUES-LIST1|
+              (|COMMON-LISP|::|TIME|
+               ,(|COMMON-LISP-USER|::|EXPR| "exemplary")))
+             ,(|COMMON-LISP-USER|::|STORE-OPS|
+               |COMMON-LISP-USER|::|EXM-POP-NAMES|)
+             (|COMMON-LISP|::|FUNCALL|
+              ',(|COMMON-LISP|::|SYMBOL-FUNCTION|
+                 '|COMMON-LISP-USER|::|RESET-PACKAGE|))
+             ,(|COMMON-LISP-USER|::|LOAD-FILE|
+               |COMMON-LISP-USER|::|USERFILE-NAME| "user")
+             (|COMMON-LISP|::|TERPRI| ,|COMMON-LISP-USER|::|TRACEFILE|)
+             ,(|COMMON-LISP-USER|::|DIRECT-TRACE-OUTPUT|) (|EXT|::|GC|)
+             (|COMMON-LISP|::|SETF| ,|COMMON-LISP-USER|::|VALUES-LIST2|
+              (|COMMON-LISP|::|TIME| ,(|COMMON-LISP-USER|::|EXPR| "user")))
+             ,(|COMMON-LISP-USER|::|STORE-OPS| |COMMON-LISP-USER|::|POP-NAMES|)
+             (|COMMON-LISP|::|TERPRI| ,|COMMON-LISP-USER|::|TRACEFILE|)
+             (|COMMON-LISP|::|TERPRI| ,|COMMON-LISP-USER|::|TRACEFILE|)
+             (|COMMON-LISP|::|PRINC| "Counter-examples:"
+              ,|COMMON-LISP-USER|::|TRACEFILE|)
+             (|COMMON-LISP|::|MAPC|
+              #'(|COMMON-LISP|::|LAMBDA|
+                 (|COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|
+                  |COMMON-LISP-USER|::|PARMS|)
+                 (|COMMON-LISP|::|HANDLER-CASE|
+                  (|COMMON-LISP|::|WHEN|
+                   (|COMMON-LISP|::|NOT|
+                    (|COMMON-LISP|::|FUNCALL| ,|COMMON-LISP-USER|::|EQUIV|
+                     |COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|))
+                   (|COMMON-LISP|::|INCF|
+                    ,|COMMON-LISP-USER|::|COUNTER-EXAMPLE-COUNT|)
+                   (|COMMON-LISP|::|TERPRI| ,|COMMON-LISP-USER|::|TRACEFILE|)
+                   (|COMMON-LISP|::|COND|
+                    ((|COMMON-LISP|::|NULL| |COMMON-LISP-USER|::|PARMS|)
+                     (|COMMON-LISP|::|PRINC| "()"
+                      ,|COMMON-LISP-USER|::|TRACEFILE|))
+                    (|COMMON-LISP|::|T|
+                     (|COMMON-LISP|::|WRITE| |COMMON-LISP-USER|::|PARMS|
+                      :|STREAM| ,|COMMON-LISP-USER|::|TRACEFILE| :|CASE|
+                      :|UPCASE| :|PRETTY| |COMMON-LISP|::|T| :|CIRCLE|
+                      |COMMON-LISP|::|T|))))
+                  (|COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+                   (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*PRINT-CIRCLE*|
+                    |COMMON-LISP|::|T|)
+                   (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|ERROR-INFO|
+                    "comparing~%~S~%and~%~S" |COMMON-LISP-USER|::|A|
+                    |COMMON-LISP-USER|::|B|)
+                   (|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|))))
+              ,|COMMON-LISP-USER|::|VALUES-LIST1|
+              ,|COMMON-LISP-USER|::|VALUES-LIST2|
+              ,|COMMON-LISP-USER|::|PARMLISTS|)
+             (|COMMON-LISP|::|FORMAT| ,|COMMON-LISP-USER|::|TRACEFILE|
+              "~% ~%Correctness: ~,3F"
+              (|COMMON-LISP|::|-| 1.
+               (|COMMON-LISP|::|/| ,|COMMON-LISP-USER|::|COUNTER-EXAMPLE-COUNT|
+                ,(|COMMON-LISP|::|*|
+                  (|COMMON-LISP|::|1+| |COMMON-LISP-USER|::|REPEAT|)
+                  (|COMMON-LISP|::|LENGTH|
+                   |COMMON-LISP-USER|::|PARM-LISTS|))))))
+            (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*TRACE-OUTPUT*|
+             |COMMON-LISP|::|*TERMINAL-IO*|)
+            (|COMMON-LISP|::|CLOSE| ,|COMMON-LISP-USER|::|TRACEFILE|)
+            (|COMMON-LISP|::|CLOSE| ,|COMMON-LISP-USER|::|OPSFILE|))))))))))
+  '(|COMMON-LISP-USER|::|USERFILE-NAME| |COMMON-LISP-USER|::|EXMFILE-NAME|
+    |COMMON-LISP-USER|::|TRACEFILE-NAME| |COMMON-LISP-USER|::|OPSFILE-NAME|
+    |COMMON-LISP|::|FUNCTION| |COMMON-LISP-USER|::|EQUIVALENT|
+    |COMMON-LISP-USER|::|PARM-LISTS| |COMMON-LISP-USER|::|EXM-POPS|
+    |COMMON-LISP-USER|::|POPS| |COMMON-LISP|::|&OPTIONAL|
+    (|COMMON-LISP-USER|::|REPEAT| 0.))))

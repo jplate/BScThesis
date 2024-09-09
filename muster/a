@@ -1,0 +1,5 @@
+(defmacro cartpr (&rest sets)
+  (if (not (consp sets)) `(list ,sets)
+   `(mapcan (lambda (a)
+     (mapcar (lambda (b) (cons a b)) (cartpr ,@(cdr sets))))
+    ,(car sets))))

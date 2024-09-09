@@ -1,0 +1,7 @@
+%%% user(+Username, ?Password, -Forename, -Userpath_as_atom, -UserHistory)
+% Liefert Angaben über die Benutzer des Systems.
+% Die Benutzergeschichte (UserHistory) ist mit einer leeren Liste zu initialisieren.
+
+:- dynamic user/5.
+
+user(jan, 111, 'Jan', 'c:/jans dateien/sulla/', []).

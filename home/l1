@@ -1,0 +1,14 @@
+;;;; Aufgabenblatt1 (Beispiel)
+
+;\A 1.1
+;\P 3
+; Definieren Sie eine Funktion 'second-element', die zu einer
+; mindestens zweielementigen Liste deren zweites Element liefert.
+; Wenn die Liste weniger als zwei Elemente enthält, soll nil
+; zurückgegeben werden.
+; Beispiele:
+; (second-element '(a b c)) liefert B,
+; (second-element nil) liefert NIL.
+
+(defun second-element (x)
+ (car (cdr y)))

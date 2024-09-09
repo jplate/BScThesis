@@ -1,0 +1,5 @@
+(defun flat (x)
+   (cond (null x) nil)
+         ((consp (car x))
+         (append (flat (car x)) (flat (cdr x))))
+         (T (cons (car x) (flat (cdr x))))))

@@ -1,0 +1,236 @@
+(|SYSTEM|::|VERSION| '(20080430.))
+#0Y_ #0Y |CHARSET|::|UTF-8|
+#Y(#:|2 17 (DEFMACRO WITH-GENSYMS (INTERN VARS &BODY ...) ...)-1|
+   #23Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC DD 72 4C 32 9C C5 19 01)
+   (|EXT|::|WITH-GENSYMS| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
+    #Y(|EXT|::|WITH-GENSYMS|
+       #88Y(00 00 00 00 02 00 00 00 26 03 AE DA DA 64 2D 04 01 1D 10 9F 5C 78
+            A0 5C 5C 78 A1 5C 5C 79 DD 63 AF 1B 26 AE 2F 02 19 03 94 00 AC DE
+            B4 DF E0 E1 B2 72 A6 7B 02 7B 02 7B 02 E1 B1 72 A6 7B 02 7B 04 7B
+            02 84 02 16 01 83 00 AC 8D 9F 5B 16 01 AC 80 B1 00 9F 5D 5D 19 06)
+       (3. |SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|MACRO-CALL-ERROR|
+        |COMMON-LISP|::|LET| |COMMON-LISP|::|IF| |COMMON-LISP|::|INTERN|
+        |COMMON-LISP|::|SYMBOL-NAME| |COMMON-LISP|::|GENSYM|)
+       (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
+       (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
+       "Makro\n
+  with-gensyms intern var-list &body body\n\n
+  Dient zum Abkürzen von let-Köpfen, in denen nur gensyms erzeugt und den\n
+  Elementen von var-list zugewiesen werden. Ist intern nicht nil, werden die\n
+  gensyms interniert."
+       1)
+    (|COMMON-LISP|::|INTERN| |COMMON-LISP-USER|::|VARS| |COMMON-LISP|::|&BODY|
+     |COMMON-LISP-USER|::|BODY|))
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|20 30 (DEFUN RESET-PACKAGE (&OPTIONAL #) ...)-2|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC 32 9C C5 19 01)
+   (|COMMON-LISP-USER|::|RESET-PACKAGE| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
+    #Y(|COMMON-LISP-USER|::|RESET-PACKAGE|
+       #19Y(00 00 00 00 00 00 01 00 26 07 6B 00 DB AD 31 F3 00 19 03)
+       (|COMMON-LISP|::|*PACKAGE*|
+        #Y(|COMMON-LISP-USER|::|RESET-PACKAGE-1|
+           #32Y(00 00 00 00 01 00 00 00 26 02 AD 72 A6 6B 00 31 E3 42 02 6A 00
+                25 01 05 AD 38 01 31 E5 00 19 02)
+           (|COMMON-LISP|::|*PACKAGE*| :|INTERNAL|)
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
+           (|COMMON-LISP-USER|::|SYM|) |COMMON-LISP|::|NIL| 1))
+       (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
+       (|COMMON-LISP|::|&OPTIONAL|
+        (|COMMON-LISP|::|PACKAGE| |COMMON-LISP|::|*PACKAGE*|))
+       "Funktion\n
+  reset-package &optional (package *package*)\n\n
+  Löscht alle internalen Symbole aus package."
+       1))
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|33 197 (LET (#) (DEFMACRO EVALUATE # ...) ...)-3|
+   #126Y(04 00 02 00 00 00 00 00 20 01 00 2B 01 DA 64 38 06 C6 FD 7E 02 31 1D
+         0B 00 00 DC 2F 03 DC AD 6D 04 01 DF 72 4C 32 9C 6B 06 53 1B A0 2B 01
+         00 0B 00 00 4B 07 30 B0 AF 6D 08 02 E3 57 0A B0 36 00 16 06 4D 16 01
+         54 0E 0D 0F 0C 67 00 00 00 2F 0E 55 19 03 58 67 00 00 01 76 00 AD 36
+         01 18 04 02 19 02 D0 1B 0E 68 04 00 68 09 00 72 62 8E AC 72 06 09 00
+         14 B5 31 90 A5 0F 0C AC 33 00 1E)
+   (0. |COMMON-LISP|::|CHARACTER| |COMMON-LISP-USER|::|EVALUATE|
+    |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
+    #Y(|COMMON-LISP-USER|::|EVALUATE|
+       #600Y(00 00 00 00 02 00 00 00 26 03 AE DB DC 63 2D 04 03 1D 80 EB 2A 2B
+             02 A0 5C 78 A1 5C 5C 78 A2 5C 5C 5C 5B 0B 02 00 B1 71 A2 A3 5C 5C
+             5C 5C 5C 5B 0B 03 01 A3 5C 5C 5C 5C 5C 5C 78 A4 5C 5C 5C 5C 5C 5C
+             5C 78 A5 5C 5C 5C 79 71 A2 A6 5C 5C 5C 5C 5C 5C 5C 5C 5C 78 A7 5C
+             5C 5C 5C 5C 5C 5C 5C 5C 5C 1C 80 A0 CA 14 A5 2B 03 E0 32 AA 0B 00
+             00 E1 32 AA 0B 00 01 E2 72 AA E3 32 AA 0B 01 02 E4 72 AA E5 72 AA
+             E6 72 AA E7 72 AA E8 72 AA E9 72 AA B3 6D 10 01 B4 6D 11 01 B5 6D
+             12 01 B6 6D 13 01 EE 68 0C 00 68 0D 01 7B 02 EF EE BA 68 10 02 BB
+             BB BA 03 16 7A BC 66 1A 72 A6 7B 02 BB F1 F2 66 1B 73 00 16 7B 02
+             7B 02 BB F1 F2 66 1B 73 00 16 7B 02 7B 02 7B 08 F3 68 11 01 F4 66
+             19 03 1B 5D 7A 7B 03 F6 F1 99 1D 7B 02 7B 02 66 19 65 1E A9 74 65
+             1F F3 68 15 02 65 20 66 1B 66 19 1B 1D AE 2F 04 19 03 A7 5C 5C 5C
+             5C 5C 5C 5C 5C 5C 5C 5B 1B FF 52 66 1D AE 82 02 23 01 86 00 AC 8E
+             AD 73 9E 16 02 7A 7B 03 65 21 65 22 65 23 69 00 01 03 24 5D 7A 03
+             25 5D 5D 7A 7B 03 65 1F F3 C1 65 26 65 27 C1 7B 02 7B 02 7B 03 65
+             21 65 28 65 23 69 00 01 03 29 5D 7A 03 2A 5D 5D 7A 7B 03 A9 74 65
+             2B F3 C2 65 2C 65 2D 04 11 74 7B 02 7B 03 BE AB 74 F6 F1 99 1D 7B
+             02 7B 02 66 22 65 2E 04 14 74 65 2F 68 1C 00 7B 02 04 13 74 65 30
+             F3 66 1C 65 2C 65 31 04 18 74 7B 02 7B 03 C4 04 15 74 65 2F 68 21
+             00 7B 02 65 2F 68 22 00 7B 02 65 32 65 33 68 24 00 7B 03 65 34 65
+             35 65 36 65 37 65 1F 65 38 65 39 F6 66 2A 03 3A 5D 7A 7B 02 65 3B
+             66 26 7B 02 65 2F 68 2C 00 7B 02 65 3C 65 3D 65 32 65 3E 68 30 00
+             7B 03 7B 02 64 65 3F 65 40 65 41 68 32 00 03 42 5D 5D 5D 7A 7B 02
+             7B 03 7B 05 65 21 65 43 65 44 65 23 69 00 01 03 45 5D 7A 03 46 5D
+             5D 5D 7A 7B 03 7B 03 7B 02 66 23 66 23 68 27 02 7B 05 65 23 68 25
+             00 65 47 65 48 65 49 65 4A 66 25 96 2C 66 30 72 62 73 02 39 7B 03
+             7B 03 7B 04 7B 17 65 4B 65 4C 68 11 00 7B 02 65 4C 68 12 01 7B 02
+             7B 05 61 03 19 18)
+       (|COMMON-LISP|::|NIL| 10. 11. |SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P|
+        |SYSTEM|::|MACRO-CALL-ERROR| 0. "TRACEFILE" "OPSFILE" "EQUIV"
+        "PARMLISTS" "VALUES-LIST1" "VALUES-LIST2" "EQUIV-NAME"
+        "COUNTER-EXAMPLE-COUNT" "EXM-POP-NAMES" "POP-NAMES"
+        #Y(|COMMON-LISP-USER|::|EVALUATE-LOAD-FILE|
+           #34Y(00 00 00 00 02 00 00 00 26 03 DB DC B0 C8 5D 7A DE DF E0 69 02
+                01 E1 B4 7B 04 CD 5D 5D 7A 61 03 19 03)
+           (|COMMON-LISP|::|NIL| |COMMON-LISP|::|HANDLER-CASE|
+            |COMMON-LISP|::|LOAD| (:|VERBOSE| |COMMON-LISP|::|NIL|)
+            |COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+            |COMMON-LISP|::|FORMAT| "loading~A"
+            ((|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|)))
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
+           (|COMMON-LISP-USER|::|FILENAME| |COMMON-LISP|::|TYPE|)
+           |COMMON-LISP|::|NIL| 1)
+        #Y(|COMMON-LISP-USER|::|EVALUATE-DIRECT-TRACE-OUTPUT|
+           #47Y(00 00 00 00 00 00 00 00 26 01 DB DC DD DE 69 00 01 DF 69 00 01
+                7B 02 7B 03 69 00 01 DB 69 00 01 E0 69 01 01 CC 5D 7A 7B 03 7B
+                04 61 03 19 01)
+           (|COMMON-LISP|::|NIL| |COMMON-LISP|::|SETF|
+            |COMMON-LISP|::|*TRACE-OUTPUT*| |COMMON-LISP|::|IF|
+            |COMMON-LISP|::|AND| |COMMON-LISP|::|OPEN-STREAM-P|
+            |COMMON-LISP|::|OPEN|
+            (:|DIRECTION| :|OUTPUT| :|IF-DOES-NOT-EXIST| :|CREATE|))
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|) ()
+           |COMMON-LISP|::|NIL| 1)
+        #Y(|COMMON-LISP-USER|::|EVALUATE-EXPR|
+           #79Y(00 00 00 00 01 00 00 00 26 02 DB DC DD DE DF E0 E1 E2 69 01 02
+                72 A6 7B 02 7B 02 7B 01 E3 E4 E5 E6 69 01 02 72 A6 7B 03 7B 02
+                D2 5D 7A 7B 03 E8 E9 EA EB 69 02 01 EC B9 D8 5D 5D 5D 7A D9 5D
+                5D 5D 7A 7B 03 7B 03 7B 02 69 00 03 61 03 19 02)
+           (|COMMON-LISP|::|NIL| |COMMON-LISP|::|MAPCAR|
+            |COMMON-LISP|::|FUNCTION| |COMMON-LISP|::|LAMBDA|
+            (|COMMON-LISP-USER|::|PARMS|) |COMMON-LISP|::|HANDLER-CASE|
+            |COMMON-LISP|::|LET| |COMMON-LISP-USER|::|FUN|
+            |COMMON-LISP|::|FIND-SYMBOL| |COMMON-LISP|::|COND|
+            (|COMMON-LISP|::|NULL| |COMMON-LISP-USER|::|FUN|)
+            |COMMON-LISP|::|ERROR| "Function ~A is undefined."
+            ((|COMMON-LISP|::|T|
+              (|COMMON-LISP|::|MULTIPLE-VALUE-LIST|
+               (|COMMON-LISP|::|EVAL|
+                (|COMMON-LISP|::|CONS| |COMMON-LISP-USER|::|FUN|
+                 |COMMON-LISP-USER|::|PARMS|)))))
+            |COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+            (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*PRINT-CIRCLE*|
+             |COMMON-LISP|::|T|)
+            |COMMON-LISP|::|FORMAT| "calling ~A~&~S"
+            (|COMMON-LISP-USER|::|PARMS|)
+            ((|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|)))
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
+           (|COMMON-LISP|::|TYPE|) |COMMON-LISP|::|NIL| 1)
+        #Y(|COMMON-LISP-USER|::|EVALUATE-STORE-OPS|
+           #44Y(00 00 00 00 01 00 00 00 26 02 DB DC DD DE 69 00 02 7B 02 7B 03
+                DF E0 E1 E2 E3 B4 7B 03 7B 03 E4 69 00 02 D0 5D 7A 7B 03 61 03
+                19 02)
+           (|COMMON-LISP|::|NIL| |COMMON-LISP|::|DO-SYMBOLS|
+            |COMMON-LISP-USER|::|VAR| |COMMON-LISP|::|*PACKAGE*|
+            |COMMON-LISP|::|TERPRI| |COMMON-LISP|::|WHEN| |COMMON-LISP|::|AND|
+            (|COMMON-LISP|::|FBOUNDP| |COMMON-LISP-USER|::|VAR|)
+            |COMMON-LISP|::|FIND|
+            (|COMMON-LISP|::|SYMBOL-NAME| |COMMON-LISP-USER|::|VAR|)
+            |COMMON-LISP|::|FORMAT| ("~S " |COMMON-LISP-USER|::|VAR|))
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
+           (|COMMON-LISP-USER|::|POP-NAMES|) |COMMON-LISP|::|NIL| 1)
+        |COMMON-LISP|::|LET| |COMMON-LISP|::|UNWIND-PROTECT| (0.)
+        |COMMON-LISP|::|QUOTE| #.#'|COMMON-LISP|::|SYMBOL-NAME|
+        |COMMON-LISP|::|SETF| |COMMON-LISP|::|OPEN|
+        (:|DIRECTION| :|OUTPUT| :|IF-DOES-NOT-EXIST| :|CREATE|)
+        |COMMON-LISP|::|FUNCALL| |COMMON-LISP-USER|::|RESET-PACKAGE|
+        "exemplary" |COMMON-LISP|::|HANDLER-CASE| |COMMON-LISP|::|LIST|
+        |COMMON-LISP|::|CONDITION| (|COMMON-LISP|::|CONDITION|)
+        |COMMON-LISP|::|FORMAT| ("creating parameter lists")
+        ((|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|))
+        |COMMON-LISP|::|SYMBOL-FUNCTION| |COMMON-LISP|::|FIND-SYMBOL|
+        (|COMMON-LISP|::|CONDITION|) ("accessing equivalence function")
+        ((|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|)) (|EXT|::|GC|)
+        |COMMON-LISP|::|TIME| "exemplary" "user" |COMMON-LISP|::|TERPRI|
+        (|EXT|::|GC|) "user" |COMMON-LISP|::|PRINC| "Counter-examples:"
+        |COMMON-LISP|::|MAPC| |COMMON-LISP|::|FUNCTION| |COMMON-LISP|::|LAMBDA|
+        (|COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|
+         |COMMON-LISP-USER|::|PARMS|)
+        |COMMON-LISP|::|WHEN| |COMMON-LISP|::|NOT|
+        (|COMMON-LISP-USER|::|A| |COMMON-LISP-USER|::|B|) |COMMON-LISP|::|INCF|
+        |COMMON-LISP|::|COND|
+        (|COMMON-LISP|::|NULL| |COMMON-LISP-USER|::|PARMS|) "()"
+        |COMMON-LISP|::|WRITE| |COMMON-LISP-USER|::|PARMS| :|STREAM|
+        (:|CASE| :|UPCASE| :|PRETTY| |COMMON-LISP|::|T| :|CIRCLE|
+         |COMMON-LISP|::|T|)
+        (|COMMON-LISP|::|CONDITION|)
+        (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*PRINT-CIRCLE*|
+         |COMMON-LISP|::|T|)
+        ("comparing~%~S~%and~%~S" |COMMON-LISP-USER|::|A|
+         |COMMON-LISP-USER|::|B|)
+        ((|COMMON-LISP|::|ERROR| |COMMON-LISP|::|CONDITION|))
+        "~% ~%Correctness: ~,3F" |COMMON-LISP|::|-| 1. |COMMON-LISP|::|/|
+        (|COMMON-LISP|::|SETF| |COMMON-LISP|::|*TRACE-OUTPUT*|
+         |COMMON-LISP|::|*TERMINAL-IO*|)
+        |COMMON-LISP|::|CLOSE|)
+       (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
+       (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
+       "Makro\n
+  evaluate userfile-name exmfile-name tracefile-name\n
+     opsfile-name function equivalent parm-lists exm-pops pops &optional (repeat 0)\n\n
+  Vergleicht Performanz und Rückgabewerte zweier gleichnamiger Funktionen, die\n
+  in einem 'Schülerprogramm' (userfile-name) bzw. einer 'Musterlösungsdatei'\n
+  (exmfile-name) definiert sind. Das Funktionssymbol ist function, das Symbol\n
+  der Äquivalenzfunktion equivalent. Diese Funktion kann auch erst in der\n
+  Musterlösungsdatei definiert sein, sollte in dem Fall aber auf keine anderen\n
+  in dieser Datei definierten Funktionen oder globalen Variablen zugreifen,\n
+  sofern diese nicht einem Package angehören, das nach dem Laden der\n
+  Musterlösung nicht mehr aktuell ist. Der Grund dafür ist, daß vor dem Laden\n
+  des Schülerprogramms, um unerwünschte Wiederverwendung von Musterlösungsfunk-\n
+  tionen zu verhindern, alle zuvor benutzten Symbole aus dem dann aktuellen\n
+  Package entfernt werden. Dies hat auch Konsequenzen auf die Auswahl von\n
+  Äquivalenzfunktionen, falls Aufgaben verlangen, in den Resultatwerten\n
+  internale Symbole zurückzugeben, die nicht schon in den Parameterlisten ent-\n
+  halten sind. Symbole gleichen Namens, von denen das eine nicht mehr im\n
+  Package vorhanden ist, sind nämlich nicht einmal equalp.\n
+  Angewendet wird function auf die Parameterlisten, zu denen sich die Elemente\n
+  von parm-lists auswerten, nachdem die Musterlösungsdatei geladen worden ist.\n
+  Es ist also möglich, die Parameter bei jedem Aufruf von evaluate automatisch\n
+  neu zu erzeugen, etwa um eine zufällige Variation zu erhalten. Für diesen Fall\n
+  gibt das letzte Argument, repeat, an, wie oft der Test der Funktion auf allen\n
+  Parameterlisten wiederholt werden soll (bei jeder Wiederholung werden die\n
+  Parameterlisten neu erzeugt).\n
+  Alle auftretenden Fehler werden in errorfile gespeichert. In Tracefile\n
+  werden die von der eingebauten time-Funktion in bezug auf die beiden\n
+  Versionen von function erzeugten Performanzangaben gespeichert sowie\n
+  Funktionsaufrufe, auf denen die beiden Versionen nach Maßgabe von equivalent\n
+  unterschiedliche Rückgabewerte liefern."
+       1)
+    (|COMMON-LISP-USER|::|USERFILE-NAME| |COMMON-LISP-USER|::|EXMFILE-NAME|
+     |COMMON-LISP-USER|::|TRACEFILE-NAME| |COMMON-LISP-USER|::|OPSFILE-NAME|
+     |COMMON-LISP|::|FUNCTION| |COMMON-LISP-USER|::|EQUIVALENT|
+     |COMMON-LISP-USER|::|PARM-LISTS| |COMMON-LISP-USER|::|EXM-POPS|
+     |COMMON-LISP-USER|::|POPS| |COMMON-LISP|::|&OPTIONAL|
+     (|COMMON-LISP-USER|::|REPEAT| 0.))
+    |COMMON-LISP-USER|::|*ERRORFILE*| #(|COMMON-LISP|::|NIL|)
+    #Y(#:|33 197 (LET (#) (DEFMACRO EVALUATE # ...) ...)-3-1|
+       #18Y(00 00 00 00 00 00 00 00 20 01 2A 14 DB 2C 02 02 19 01)
+       (|COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|
+        #Y(#:|33 197 (LET (#) (DEFMACRO EVALUATE # ...) ...)-3-1-1|
+           #17Y(00 00 00 00 01 00 00 00 20 02 9E 0C 00 01 4E 01 00)
+           (|COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|)
+           (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)))
+       (|COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+    #Y(#:|33 197 (LET (#) (DEFMACRO EVALUATE # ...) ...)-3-2|
+       #16Y(00 00 00 00 00 00 00 00 20 01 6B 00 2F 01 19 01)
+       (|COMMON-LISP-USER|::|*EVALFILE-NAME*| |COMMON-LISP|::|LOAD|)
+       (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+    (#(|COMMON-LISP|::|CONDITION| 73.) 3. . 2.) "directives"
+    |COMMON-LISP|::|*ERROR-OUTPUT*| |COMMON-LISP|::|*TERMINAL-IO*|
+    |COMMON-LISP|::|CLOSE|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))

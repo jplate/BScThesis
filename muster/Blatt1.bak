@@ -1,0 +1,48 @@
+;;;; Musterlösungen zu Blatt 1 (Beispiel)
+
+;;; Hilfsfunktionen
+
+(flet ( ; mit dem flet wird erreicht, daß die Funktion sort-objects für cartpr-equal auch
+	; nach einem Löschen aller internalen Symbole noch erreichbar ist.
+  (sort-objects (list)
+   (sort list #'string< :key #'(lambda (a) (format nil "~A" a)))))
+ (defun cartpr-equal (l1 l2)
+  (equal (sort-objects l1) (sort-objects l2)))
+)
+
+
+;\A 1.1
+;\P 10
+;\F flat
+;\E equal
+;\R 100
+
+;\test '(())
+;\test '((a (b (c)) (d) ()))
+;\test '((4 3 2 1))
+;\test '(((((((4))))))
+
+(defun flat (x)
+       (cond ((null x) nil)
+             ((consp (car x)) 
+              (append (flat (car x)) (flat (cdr x))))
+             (T (cons (car x) (flat (cdr x))))))
+
+
+;\A 1.2
+;\P 15
+;\F cartpr
+;\E cartpr-equal
+;\R 25
+
+;\test '()
+;\test '((5 2))
+;\test '((1 3 4) (nil 9))
+;\test '((a b 4 e) (nil 9) (2 3 p))
+
+(defmacro cartpr (&rest sets)
+ `(if (not (consp ',sets)) (list ',sets)
+   (mapcan (lambda (a)
+     (mapcar (lambda (b) (cons a b)) (cartpr ,@(cdr sets))))
+    (car ',sets))))
+

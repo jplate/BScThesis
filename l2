@@ -1,0 +1,7 @@
+
+(flet (
+  (sort-objects (list)
+   (sort list #'string< :key #'(lambda (a) (format nil "~A" a)))))
+ (defun cartpr-equal (l1 l2)
+  (equal (sort-objects l1) (sort-objects l2)))
+)

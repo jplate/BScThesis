@@ -1,0 +1,18 @@
+;;;; Benutzer-Lösung (Beispiel)
+
+;\A 1.1
+;\P 10
+; Definieren Sie eine Funktion 'flat', die zu einer Liste l1 eine neue Liste liefert, 
+; die wie l1 ist mit der Ausnahme, daß aus ihr alle Listenebenen entfernt worden sind.
+; Beispiel:
+; (flat '(a ((b) a) (b) c)) liefert (A B A B C).
+  
+;\A 1.2
+;\P 15
+; Definieren Sie eine Funktion 'cartpr', die gewissermaßen das kartesische Produkt einer
+
+(defun cartpr (sets)
+ (if (not (consp sets)) (list sets)
+  (mapcan (lambda (a)
+    (mapcar (lambda (b) (cons a b)) (cartpr (cdr sets)))) 
+   (car sets))))

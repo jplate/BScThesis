@@ -1,0 +1,53 @@
+;;;; Benutzer-Lösung (Beispiel)
+
+;\A 2.1
+;\P 10
+; Definieren Sie eine Funktion 'flat', die zu einer Liste l1 eine neue Liste liefert,
+; die wie l1 ist mit der Ausnahme, daß aus ihr alle Listenebenen entfernt worden sind.
+; Beispiel:
+; (flat '(a ((b) a) (b) c)) liefert (A B A B C).
+
+(defun flat (x)
+       (dotimes (i 100) (cons i i))
+       (cond ((null x) nil)
+             ((consp (car x))
+              (append (flat (car x)) (flat (cdr x))))
+             (T (cons (car x) (flat (cdr x))))))
+
+
+;\A 2.2
+;\P 20
+
+; Definieren Sie eine Funktion 'rev', die zu einer Liste l1 
+; eine neue Liste liefert, in der alle Elemente von l1 in 
+; umgekehrter Reihenfolge enthalten sind. 
+; Beispiel:
+; (rev '(a b a c)) liefert (C A B A).
+
+(defun rev (l1 &optional z)
+ (cond ((null l1) z)
+       (T (rev (cdr l1) (cons (car l1) z)))
+ )
+)
+
+;\A 2.3
+;\P 25
+; Definieren Sie eine Funktion oder ein Makro 'cartpr', die (das) zu einer beliebigen
+; Anzahl von 'Mengen' (d.h. von Listen, die Mengen repräsentieren sollen) eine
+; Liste liefert, die das kartesische Produkt dieser Mengen repräsentiert.
+;
+; Beispiel:
+;
+; (cartpr '(f g) '(x y z)) liefert (irgendeine Permutation von)
+; ((F X) (F Y) (F Z) (G X) (G Y) (G Z))
+;
+; (cartpr '(f g) '(x y) '(z)) liefert (irgendeine Permutation von)
+; ((F X Z) (F Y Z) (G X Z) (G Y Z))
+
+
+(defmacro cartpr (&rest sets)
+  "fehlerhafte Lösung"
+  (if (not (consp sets)) nil
+   `(mapcan (lambda (a)
+     (mapcar (lambda (b) (cons a b)) (cartpr ,@(cdr sets))))
+    ,(car sets))))
